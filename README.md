@@ -4,7 +4,7 @@ A client-side web editor for procedural abstract backgrounds: soft organic gradi
 
 ## Status
 
-Target release: **0.1.0**. The project foundation from [#1](https://github.com/Peerapat-J/AuraMesh/issues/1) contains a minimal application shell, strict TypeScript, tests, and CI. [#3](https://github.com/Peerapat-J/AuraMesh/issues/3) adds validated configuration and deterministic scene data. Canvas rendering, editor controls, exports, and persistence described below are planned features and are not implemented yet; the visible page is still the bootstrap shell.
+Target release: **0.1.0**. The project foundation from [#1](https://github.com/Peerapat-J/AuraMesh/issues/1) contains a minimal application shell, strict TypeScript, tests, and CI. [#3](https://github.com/Peerapat-J/AuraMesh/issues/3) adds validated configuration and deterministic scene data; [#4](https://github.com/Peerapat-J/AuraMesh/issues/4) adds the Canvas gradient renderer and Chromium smoke tests. Editor controls, contrast/grain, exports, and persistence are still planned; the production page remains the bootstrap shell.
 
 ## Setup
 
@@ -21,15 +21,17 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open the URL printed by Vite (normally `http://localhost:5173`). The current page displays only **AuraMesh** and **Procedural background generator**.
+Open the URL printed by Vite (normally `http://localhost:5173`). The current product page displays only **AuraMesh** and **Procedural background generator**. In development, open `/__renderer-demo` to inspect the gradient with seed/softness/spread/size controls. This fixture is excluded from production.
 
 ## Verification
 
 ```sh
+# One-time browser installation after installing project dependencies:
+pnpm exec playwright install chromium
 pnpm verify
 ```
 
-This invokes `scripts/ci_local.sh`: lint → formatting check → strict typecheck → unit/component tests → production build. GitHub Actions invokes the same command after installing the pinned runtime and frozen dependencies.
+This invokes `scripts/ci_local.sh`: lint → formatting check → strict typecheck → unit/component tests → production build → Chromium smoke. GitHub Actions invokes the same command after installing the pinned runtime, frozen dependencies and Chromium with Linux dependencies.
 
 Useful individual commands:
 
@@ -37,6 +39,7 @@ Useful individual commands:
 | ------------------- | --------------------------------------------------- |
 | `pnpm test`         | Watch unit/component tests                          |
 | `pnpm test:run`     | Run tests once                                      |
+| `pnpm test:e2e`     | Build production and run Chromium renderer smoke    |
 | `pnpm lint`         | Check ESLint rules                                  |
 | `pnpm format`       | Format source and documentation                     |
 | `pnpm format:check` | Check formatting without editing                    |
@@ -51,7 +54,7 @@ pnpm build
 pnpm preview
 ```
 
-Open the printed URL (normally `http://localhost:4173`) and check the browser console. Browser regression tooling will begin in #4; `pnpm verify` currently covers the bootstrap checks only.
+Open the printed URL (normally `http://localhost:4173`) and check the browser console. Automated Canvas checks use the development fixture; the production bundle is also checked to exclude that fixture. Editor/export browser regression will grow in later issues.
 
 ## Branch workflow
 
@@ -92,5 +95,7 @@ Start with **#1 → #3 → #4**. The complete single-developer order is #1 → #
 - [Deployment and release #16](https://github.com/Peerapat-J/AuraMesh/issues/16)
 - [Detailed scope, architecture, issue review, implementation order, and QA plan](docs/version-0.1-plan.md)
 - [Implemented engine contracts, defaults, PRNG and scene rules](docs/engine-contract.md)
+- [Canvas renderer contract and development fixture](docs/renderer-contract.md)
+- [Renderer visual QA and performance baseline](docs/qa/renderer-v1.md)
 
 This project keeps a hands-on learning workflow: implement core logic in small steps, use AI for explanation/review/debugging, and report executed automated checks separately from manual QA and pending checks. Browser support and performance limits will be documented from actual validation before release.
