@@ -2,13 +2,14 @@
 
 อัปเดตแผนเมื่อ 7 ตุลาคม 2026 (Asia/Bangkok)
 
-เอกสารนี้เป็นแผน implementation สำหรับ 0.1.0 ตาม scope ที่ปรับใน GitHub issues #1–#16 และ milestone 0.1.0 Bootstrap #1 เริ่ม implementation แล้ว ฟีเจอร์ renderer/editor/export/persistence ยังเป็นแผน; ผลตรวจจริงต้องอ้างอิง handoff ของ candidate revision
+เอกสารนี้เป็นแผน implementation สำหรับ 0.1.0 ตาม scope ที่ปรับใน GitHub issues #1–#16 และ milestone 0.1.0 Bootstrap #1 merge เข้า dev แล้ว; model/seed/scene #3 มี implementation บน feature branch ฟีเจอร์ renderer/editor/export/persistence ยังเป็นแผน; ผลตรวจจริงต้องอ้างอิง handoff ของ candidate revision
 
 ## สถานะที่ตรวจพบ
 
-- สร้าง initial commit บน main และ dev เป็น integration base; bootstrap #1 อยู่ branch `PJ/issue-1-project-bootstrap`
+- ใช้ dev เป็น integration base; bootstrap #1 merge ผ่าน [PR #17](https://github.com/Peerapat-J/AuraMesh/pull/17) แล้ว
+- Model/seed/scene #3 อยู่ branch `PJ/issue-3-seeded-scene`; API และกฎที่ implement แล้วอยู่ใน [engine contract](engine-contract.md)
 - Issues #1–#16 อยู่ใน [milestone 0.1.0](https://github.com/Peerapat-J/AuraMesh/milestone/1): งานพัฒนา #1–#14, roadmap #15 และ release #16
-- ไม่มี pull request; กำหนด assignee ก่อนเริ่ม implementation ของแต่ละงาน
+- สถานะ issue/PR ล่าสุดให้ตรวจจาก GitHub; merge เข้า dev อาจไม่ปิด issue อัตโนมัติ เพราะ default branch ยังเป็น main
 - ทุก issue มี dependencies, implementation/validation และ acceptance criteria ที่สอดคล้องกับ roadmap
 - เก็บฟีเจอร์เดิมทั้งหมด รวม custom palette, persistence และ A4 ใน 0.1.0
 
@@ -88,7 +89,7 @@ Vitest ใช้กับ pure model/validation/reducer/pixel transforms; React 
 
 ### 2. Model และ defaults
 
-Contract เป้าหมายสำหรับ implementation ไม่ใช่ code ที่ implement แล้ว:
+Document/scene/RenderSpec implement แล้วใน #3 ตาม [engine contract](engine-contract.md); `renderImage()` ด้านล่างยังเป็น API เป้าหมายของ #4:
 
 ```ts
 type EditorDocument = {
@@ -210,7 +211,7 @@ Storage read/write/remove รวมถึงการเข้าถึง gette
 
 Render contracts/visual baseline รวมใน #3/#4 แล้ว ไม่สร้าง engine contract issue ซ้ำ ไม่เพิ่ม feature share URL/undo/history/AI/animation/account ใน 0.1
 
-[Milestone 0.1.0](https://github.com/Peerapat-J/AuraMesh/milestone/1) รวม #1–#16; #15 เป็น tracking issue ไม่ใช่ feature เพิ่ม; ทุกงานยังเปิดเพื่อ implement และ validate จริงก่อนปิด
+[Milestone 0.1.0](https://github.com/Peerapat-J/AuraMesh/milestone/1) รวม #1–#16; #15 เป็น tracking issue ไม่ใช่ feature เพิ่ม; ปิดแต่ละงานหลัง implementation และ validation ครบ ไม่ใช้สถานะ milestone แทนผลตรวจจริง
 
 ## ลำดับการทำ
 
@@ -273,4 +274,4 @@ Release 0.1.0 ผ่านเมื่อ:
 
 ## สถานะ implementation และข้อจำกัด
 
-Scope และ issue metadata ปรับแล้ว และ bootstrap foundation #1 มี implementation บน feature branch ฟีเจอร์ภาพ/editor/output ยังไม่ implement จึงยังยืนยัน image quality, rendering browser compatibility, render latency, memory behavior หรือ release readiness จริงไม่ได้ ตัวเลข size/preview cap/defaults เป็น initial contract สำหรับ implement และวัด ไม่ใช่ผล benchmark
+Scope และ issue metadata ปรับแล้ว; bootstrap foundation #1 merge เข้า dev และ model/seed/scene #3 มี implementation บน feature branch ฟีเจอร์ภาพ/editor/output ยังไม่ implement จึงยังยืนยัน image quality, rendering browser compatibility, render latency, memory behavior หรือ release readiness จริงไม่ได้ ตัวเลข size/preview cap/defaults เป็น initial contract สำหรับ implement และวัด ไม่ใช่ผล benchmark
