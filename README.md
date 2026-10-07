@@ -4,7 +4,7 @@ A client-side web editor for procedural abstract backgrounds: soft organic gradi
 
 ## Status
 
-Target release: **0.1.0**. The project foundation from [#1](https://github.com/Peerapat-J/AuraMesh/issues/1) contains a minimal application shell, strict TypeScript, tests, and CI. The renderer, editor controls, exports, and persistence described below are planned features and are not implemented yet.
+Target release: **0.1.0**. The project foundation from [#1](https://github.com/Peerapat-J/AuraMesh/issues/1) contains a minimal application shell, strict TypeScript, tests, and CI. [#3](https://github.com/Peerapat-J/AuraMesh/issues/3) adds validated configuration and deterministic scene data. Canvas rendering, editor controls, exports, and persistence described below are planned features and are not implemented yet; the visible page is still the bootstrap shell.
 
 ## Setup
 
@@ -91,5 +91,6 @@ Start with **#1 → #3 → #4**. The complete single-developer order is #1 → #
 - [Roadmap and release contracts #15](https://github.com/Peerapat-J/AuraMesh/issues/15)
 - [Deployment and release #16](https://github.com/Peerapat-J/AuraMesh/issues/16)
 - [Detailed scope, architecture, issue review, implementation order, and QA plan](docs/version-0.1-plan.md)
+- [Implemented engine contracts, defaults, PRNG and scene rules](docs/engine-contract.md)
 
 This project keeps a hands-on learning workflow: implement core logic in small steps, use AI for explanation/review/debugging, and report executed automated checks separately from manual QA and pending checks. Browser support and performance limits will be documented from actual validation before release.
