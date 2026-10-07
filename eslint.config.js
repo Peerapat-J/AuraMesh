@@ -10,6 +10,8 @@ export default defineConfig([
   globalIgnores([
     'dist/**',
     'coverage/**',
+    'test-results/**',
+    'playwright-report/**',
     'node_modules/**',
     '.pnpm-store/**',
   ]),
@@ -20,6 +22,10 @@ export default defineConfig([
       ecmaVersion: 'latest',
       globals: globals.node,
     },
+  },
+  {
+    files: ['e2e/**/*.ts'],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
   {
     files: ['src/**/*.{ts,tsx}'],

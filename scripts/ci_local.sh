@@ -8,4 +8,4 @@ pnpm lint
 pnpm format:check
 pnpm typecheck
 pnpm test:run
-pnpm build
+pnpm test:e2e

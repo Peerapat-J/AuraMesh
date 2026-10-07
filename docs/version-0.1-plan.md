@@ -2,12 +2,13 @@
 
 อัปเดตแผนเมื่อ 7 ตุลาคม 2026 (Asia/Bangkok)
 
-เอกสารนี้เป็นแผน implementation สำหรับ 0.1.0 ตาม scope ที่ปรับใน GitHub issues #1–#16 และ milestone 0.1.0 Bootstrap #1 merge เข้า dev แล้ว; model/seed/scene #3 มี implementation บน feature branch ฟีเจอร์ renderer/editor/export/persistence ยังเป็นแผน; ผลตรวจจริงต้องอ้างอิง handoff ของ candidate revision
+เอกสารนี้เป็นแผน implementation สำหรับ 0.1.0 ตาม scope ที่ปรับใน GitHub issues #1–#16 และ milestone 0.1.0 Bootstrap #1 และ model/seed/scene #3 merge เข้า dev แล้ว; gradient renderer #4 มี implementation บน feature branch ฟีเจอร์ editor/grain/contrast/export/persistence ยังเป็นแผน; ผลตรวจจริงต้องอ้างอิง handoff ของ candidate revision
 
 ## สถานะที่ตรวจพบ
 
 - ใช้ dev เป็น integration base; bootstrap #1 merge ผ่าน [PR #17](https://github.com/Peerapat-J/AuraMesh/pull/17) แล้ว
-- Model/seed/scene #3 อยู่ branch `PJ/issue-3-seeded-scene`; API และกฎที่ implement แล้วอยู่ใน [engine contract](engine-contract.md)
+- Model/seed/scene #3 merge ผ่าน [PR #18](https://github.com/Peerapat-J/AuraMesh/pull/18); API และกฎอยู่ใน [engine contract](engine-contract.md)
+- Gradient renderer #4 อยู่ branch `PJ/issue-4-gradient-renderer`; ดู [renderer contract](renderer-contract.md) และ [QA/baseline](qa/renderer-v1.md)
 - Issues #1–#16 อยู่ใน [milestone 0.1.0](https://github.com/Peerapat-J/AuraMesh/milestone/1): งานพัฒนา #1–#14, roadmap #15 และ release #16
 - สถานะ issue/PR ล่าสุดให้ตรวจจาก GitHub; merge เข้า dev อาจไม่ปิด issue อัตโนมัติ เพราะ default branch ยังเป็น main
 - ทุก issue มี dependencies, implementation/validation และ acceptance criteria ที่สอดคล้องกับ roadmap
@@ -89,7 +90,7 @@ Vitest ใช้กับ pure model/validation/reducer/pixel transforms; React 
 
 ### 2. Model และ defaults
 
-Document/scene/RenderSpec implement แล้วใน #3 ตาม [engine contract](engine-contract.md); `renderImage()` ด้านล่างยังเป็น API เป้าหมายของ #4:
+Document/scene/RenderSpec implement แล้วใน #3 ตาม [engine contract](engine-contract.md); `renderImage()` ใน #4 ทำ gradient แล้ว ส่วน contrast/grain ยังรอ #5/#6:
 
 ```ts
 type EditorDocument = {
@@ -274,4 +275,4 @@ Release 0.1.0 ผ่านเมื่อ:
 
 ## สถานะ implementation และข้อจำกัด
 
-Scope และ issue metadata ปรับแล้ว; bootstrap foundation #1 merge เข้า dev และ model/seed/scene #3 มี implementation บน feature branch ฟีเจอร์ภาพ/editor/output ยังไม่ implement จึงยังยืนยัน image quality, rendering browser compatibility, render latency, memory behavior หรือ release readiness จริงไม่ได้ ตัวเลข size/preview cap/defaults เป็น initial contract สำหรับ implement และวัด ไม่ใช่ผล benchmark
+Scope และ issue metadata ปรับแล้ว; #1/#3 merge เข้า dev และ gradient renderer #4 มี implementation บน feature branch พร้อม Chromium smoke และ initial visual/performance evidence ใน [QA record](qa/renderer-v1.md) ผลนี้ยังไม่ครอบคลุม editor/grain/contrast/export/persistence หรือ release readiness ตัวเลข preview cap/defaults และ output limits ยังต้องวัดกับ pipeline เต็มก่อน release

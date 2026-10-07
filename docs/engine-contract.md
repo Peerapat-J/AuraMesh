@@ -1,6 +1,6 @@
 # AuraMesh renderer v1: deterministic model
 
-Implemented by [#3](https://github.com/Peerapat-J/AuraMesh/issues/3). This module produces data only; Canvas rendering starts in #4. The current application page remains the bootstrap shell.
+Model implemented by [#3](https://github.com/Peerapat-J/AuraMesh/issues/3). These model modules produce data only. The separate [Canvas renderer](renderer-contract.md) is implemented in #4; the production application page remains the bootstrap shell.
 
 ## Public API
 
@@ -62,10 +62,10 @@ Known sequences are pinned as uint32 fixtures generated independently with unsig
 
 Spread scales coverage without resampling centers or opacity. Changing palette colors/count changes color assignment but preserves geometry and grain seed. Softness/contrast/grain are render style; output size/format/source preset metadata do not influence scene generation.
 
-`buildRenderSpec(document)` normalizes the document, creates the scene from version/seed/actual colors/spread, and passes softness/grain/contrast separately as style. The shared rendering order gradient → contrast → grain will be implemented in #4–#6.
+`buildRenderSpec(document)` normalizes the document, creates the scene from version/seed/actual colors/spread, and passes softness/grain/contrast separately as style. The shared rendering order is gradient → contrast → grain. #4 implements the gradient; contrast/grain remain for #5/#6.
 
 Same normalized scene inputs reproduce equal scene data. This does not promise pixel-identical images across browsers, different output sizes, or encoded JPEG/PNG bytes. Before a future algorithm/default change ships, decide renderer-version compatibility and update fixtures/docs together.
 
 ## Verification
 
-Run `pnpm verify`. Engine tests use the Node environment and cover known sequences, long-run state, range errors, normalizers/boundaries, frozen defaults/input nonmutation, seed A→B→A, geometry invariants, palette/spread changes and render-style separation. Visual/browser renderer QA begins in #4; no new image behavior is claimed by this issue.
+Run `pnpm verify`. Model tests use the Node environment and cover known sequences, long-run state, range errors, normalizers/boundaries, frozen defaults/input nonmutation, seed A→B→A, geometry invariants, palette/spread changes and render-style separation. Renderer/browser checks are documented separately in [the #4 QA record](qa/renderer-v1.md).
